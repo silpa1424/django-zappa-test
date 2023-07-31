@@ -1,0 +1,20 @@
+version: 0.2
+env:
+  variables:
+    PYTHON_VERSION: 3.11
+phases:
+  install:
+    runtime-versions:
+        python: $PYTHON_VERSION
+    commands:
+      - pip3 --version
+      - pip3 install --upgrade pip
+      - pip3 install virtualenv
+  build:
+    commands:
+      - echo test build
+cache:
+  paths:
+    - '/root/.cache/pip/**/*'
+    - '/root/.pyenv/**/*'
+    - '/root/.local/share/virtualenv/**/*'
