@@ -4,7 +4,7 @@
         "django_settings": "sampleproject.settings",
         "profile_name": "default",
         "project_name": "django-zappa-te",
-        "runtime": "python3.10",
+        "runtime": "python3.8",
         "s3_bucket": "zappa-pokbn2z30"
     },
     "dev_ap_east_1": {
