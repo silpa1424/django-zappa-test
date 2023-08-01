@@ -16,6 +16,7 @@ phases:
       - echo test build
 cache:
   paths:
-    - '/root/.cache/pip/**/*'
-    - '/root/.pyenv/**/*'
-    - '/root/.local/share/virtualenv/**/*'
+    - '/root/.cache/pip'
+    - 'cache/**/*'
+      #- '/root/.pyenv/**/*'
+      #- '/root/.local/share/virtualenv/**/*'
