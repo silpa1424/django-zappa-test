@@ -1,19 +1,25 @@
 version: 0.2
-env:
-  variables:
-    PYTHON_VERSION: 3.11
+
 phases:
   install:
     runtime-versions:
-        python: $PYTHON_VERSION
+      python: 3.11
     commands:
-      - python3.11 --version
-      - pip3 --version
-      - pip3 install --upgrade pip
-      - pip3 install virtualenv
+      - pip install --upgrade pip
+      - pip install virtualenv
+  pre_build:
+    commands:
+      - virtualenv venv
+      - source venv/bin/activate
+      - pip install -r requirements.txt -t $CODEBUILD_SRC_DIR/cache
+      - cp -r $HOME/.pyenv/ $CODEBUILD_SRC_DIR/cache
   build:
     commands:
-      - echo test build
+      # Your build commands here
+  post_build:
+    commands:
+      # Your post-build commands here
+
 cache:
   paths:
     - '/root/.cache/pip'
