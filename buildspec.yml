@@ -7,7 +7,7 @@ phases:
     runtime-versions:
         python: $PYTHON_VERSION
     commands:
-      #- pip3 --version
+      - pip3 --version
       - pip3 install --upgrade pip
       - pip3 install virtualenv
   build:
