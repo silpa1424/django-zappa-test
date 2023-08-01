@@ -15,8 +15,8 @@ phases:
       - . venv/bin/activate
       - pip install -r requirements.txt
       - mkdir -p $HOME/cache
-      - cp -r venv $HOME/cache/
-      - cp -r $HOME/.pyenv $HOME/cache/
+      - cp -l venv $HOME/cache/
+      - cp -l $HOME/.pyenv $HOME/cache/
   build:
     commands:
       # Your build commands here
