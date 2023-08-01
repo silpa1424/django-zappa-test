@@ -4,15 +4,19 @@ phases:
   install:
     runtime-versions:
       python: 3.11
+        #commands:
+        #- pip install --upgrade pip
+        #- pip install virtualenv
+  pre_build:
     commands:
       - pip install --upgrade pip
       - pip install virtualenv
-  pre_build:
-    commands:
-      - virtualenv venv
+      - python -m venv venv
       - source venv/bin/activate
-      - pip install -r requirements.txt -t $CODEBUILD_SRC_DIR/cache
-      - cp -r $HOME/.pyenv/ $CODEBUILD_SRC_DIR/cache
+      - pip install -r requirements.txt
+      - mkdir -p $HOME/cache
+      - cp -r venv $HOME/cache/
+      - cp -r $HOME/.pyenv $HOME/cache/
   build:
     commands:
       # Your build commands here
@@ -23,6 +27,5 @@ phases:
 cache:
   paths:
     - '/root/.cache/pip'
-    - 'cache/**/*'
-    - '/root/.pyenv'
-    - 'venv'
+    - '$HOME/cache/venv'
+    - '$HOME/cache/.pyenv'
