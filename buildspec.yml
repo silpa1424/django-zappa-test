@@ -17,6 +17,6 @@ phases:
 cache:
   paths:
     - '/root/.cache/pip'
+    - '/root/.pyenv'
+    - '/root/.local/share/virtualenv'
     - 'cache/**/*'
-      #- '/root/.pyenv/**/*'
-      #- '/root/.local/share/virtualenv/**/*'
