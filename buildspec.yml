@@ -15,8 +15,8 @@ phases:
       - . myenv/bin/activate
       - pip install -r requirements.txt
       - mkdir -p $HOME/cache
-        #- cp -r -l myenv $HOME/cache/
-      - cp -r -l $HOME/.pyenv $HOME/cache/
+        #- cp -r -l myenv $HOME/cache/temp
+      - cp -r -l $HOME/.pyenv $HOME/cache/temp
   build:
     commands:
       # Your build commands here
