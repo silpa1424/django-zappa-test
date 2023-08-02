@@ -15,7 +15,7 @@ env:
 phases:
   install:
     runtime-versions:
-      python: 3.11
+      python: 3.10
         #commands:
         #- pip install --upgrade pip
         #- pip install virtualenv
