@@ -16,7 +16,7 @@ phases:
   install:
     runtime-versions:
       python: 3.10
-        commands:
+    commands:
            - aws configure --profile $AWS_PROFILE set role_arn $DEPLOYMENT_ROLE
         #- pip install --upgrade pip
         #- pip install virtualenv
