@@ -6,7 +6,7 @@ env:
       #STACK_NAME: "ctbackend"
       #BRANCH_NAME: "test"
     STAGE: "dev"
-    DEPLOYMENT_ROLE: "arn:aws:iam::841606132678:role/service-role/codebuild-d-service-role"
+    DEPLOYMENT_ROLE: "arn:aws:iam::841606132678:user/silpa"
     IMAGE_REPO_NAME: "django-zappa-test"
     AWS_PROFILE: "default"
     AWS_REGION: "ap-south-1"
