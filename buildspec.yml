@@ -6,9 +6,9 @@ env:
       #STACK_NAME: "ctbackend"
       #BRANCH_NAME: "test"
     STAGE: "dev"
-      #DEPLOYMENT_ROLE: "arn:aws:iam::727697407146:role/cloudformation_service_role_deployment"
+    DEPLOYMENT_ROLE: "arn:aws:iam::841606132678:role/service-role/codebuild-d-service-role"
     IMAGE_REPO_NAME: "django-zappa-test"
-      #AWS_PROFILE: "default"
+    AWS_PROFILE: "default"
     AWS_REGION: "ap-south-1"
     AWS_ACCOUNT_ID: 841606132678
 
@@ -16,7 +16,8 @@ phases:
   install:
     runtime-versions:
       python: 3.10
-        #commands:
+        commands:
+           - aws configure --profile $AWS_PROFILE set role_arn $DEPLOYMENT_ROLE
         #- pip install --upgrade pip
         #- pip install virtualenv
   pre_build:
