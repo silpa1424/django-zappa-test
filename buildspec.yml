@@ -8,7 +8,7 @@ env:
     STAGE: "dev"
       #DEPLOYMENT_ROLE: "arn:aws:iam::727697407146:role/cloudformation_service_role_deployment"
     IMAGE_REPO_NAME: "django-zappa-test"
-    AWS_PROFILE: "default"
+      #AWS_PROFILE: "default"
     AWS_REGION: "ap-south-1"
     AWS_ACCOUNT_ID: 841606132678
 
