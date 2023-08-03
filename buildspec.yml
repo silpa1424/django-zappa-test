@@ -10,7 +10,7 @@ phases:
   pre_build:
     commands:
       - virtualenv venv
-      - source venv/bin/activate
+      - . venv/bin/activate
       - pip install -r requirements.txt -t $CODEBUILD_SRC_DIR/cache
   build:
     commands:
