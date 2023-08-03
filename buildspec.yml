@@ -1,64 +1,18 @@
 version: 0.2
-env:
-  variables:
-    PYTHON_VERSION: 3.10
-      #S3_BUCKET: "clertrust-dev"
-      #STACK_NAME: "ctbackend"
-      #BRANCH_NAME: "test"
-    STAGE: "dev"
-    DEPLOYMENT_ROLE: "arn:aws:iam::841606132678:user/silpa"
-    IMAGE_REPO_NAME: "django-zappa-test"
-    AWS_PROFILE: "default"
-    AWS_REGION: "ap-south-1"
-    AWS_ACCOUNT_ID: 841606132678
 
 phases:
   install:
     runtime-versions:
-      python: 3.10
-    commands:
-      - aws configure --profile $AWS_PROFILE set role_arn $DEPLOYMENT_ROLE
-      - aws configure --profile $AWS_PROFILE set credential_source EcsContainer
-        #- pip install --upgrade pip
-        #- pip install virtualenv
-  pre_build:
-    commands:
-      - pip install --upgrade pip
-      - pip install virtualenv
-      - python -m venv myenv
-      - . myenv/bin/activate
-      - pip install -r requirements.txt
-        #- mkdir -p $HOME/cache
-        #- cp -r -l myenv $HOME/cache
-        #- cp -r -l $HOME/.pyenv $HOME/cache
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-  build:
+        python: 3.10
+     commands:
+      - pip3 --version
+      - pip3 install --upgrade pip
+      - pip3 install virtualenv
+      - virtualenv venv
+      - . venv/bin/activate
+   build:
     commands:
       - pwd && ls
         #- zappa status $STAGE
 
       - echo Build started on `date`
-      - echo Building the Docker image...
-
-      - zappa save-python-settings-file $STAGE
-      - docker build -t $IMAGE_REPO_NAME:$STAGE-$CODEBUILD_BUILD_NUMBER .
-      - docker tag $IMAGE_REPO_NAME:$STAGE-$CODEBUILD_BUILD_NUMBER $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME:$STAGE-$CODEBUILD_BUILD_NUMBER
-      # Your build commands here
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image...
-      - echo $IMAGE_REPO_NAME
-      - echo $STAGE-$CODEBUILD_BUILD_NUMBER
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME:$STAGE-$CODEBUILD_BUILD_NUMBER
-
-      - zappa update -d $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME:$STAGE-$CODEBUILD_BUILD_NUMBER $STAGE
-      # Your post-build commands here
-
-cache:
-  paths:
-    - '/root/.cache/pip'
-    - 'cache/**/*'
-      #- '$HOME/cache/myenv'
-      #- '$HOME/cache/.pyenv'
